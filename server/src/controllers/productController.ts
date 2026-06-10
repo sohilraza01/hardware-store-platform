@@ -8,17 +8,19 @@ export const getProducts = async (req: Request, res: Response) => {
 
     const query: any = {};
 
-    // Search by name
     if (search) {
-      query.$text = { $search: search as string };
+      // Text index ki jagah regex use karo — zyada reliable hai
+      query.$or = [
+        { name: { $regex: search as string, $options: 'i' } },
+        { description: { $regex: search as string, $options: 'i' } },
+        { brand: { $regex: search as string, $options: 'i' } },
+      ];
     }
 
-    // Filter by category
     if (category) {
       query.category = category;
     }
 
-    // Filter by price range
     if (minPrice || maxPrice) {
       query.price = {};
       if (minPrice) query.price.$gte = Number(minPrice);
@@ -43,10 +45,10 @@ export const getProducts = async (req: Request, res: Response) => {
       total,
     });
   } catch (error) {
+    console.error('Products Error:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
-
 // GET /api/products/:id — single product
 export const getProductById = async (req: Request, res: Response) => {
   try {

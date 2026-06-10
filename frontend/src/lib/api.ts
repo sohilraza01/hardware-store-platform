@@ -38,17 +38,24 @@ export const authApi = {
 
 // ─── Product APIs ─────────────────────────────
 export const productApi = {
-  getAll: (params?: {
-    search?: string;
-    category?: string;
-    minPrice?: number;
-    maxPrice?: number;
-    page?: number;
-  }) => {
-    const query = new URLSearchParams(params as any).toString();
-    return request(`/products?${query}`);
-  },
-
+getAll: (params?: {
+  search?: string;
+  category?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  page?: number;
+  limit?: number;
+}) => {
+  const query = new URLSearchParams();
+  if (params?.search) query.append('search', params.search);
+  if (params?.category) query.append('category', params.category);
+  if (params?.minPrice) query.append('minPrice', String(params.minPrice));
+  if (params?.maxPrice) query.append('maxPrice', String(params.maxPrice));
+  if (params?.page) query.append('page', String(params.page));
+  if (params?.limit) query.append('limit', String(params.limit));
+  
+  return request(`/products?${query.toString()}`);
+},
   getById: (id: string) => request(`/products/${id}`),
 
   getFeatured: () => request('/products/featured'),
