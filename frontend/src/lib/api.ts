@@ -78,3 +78,53 @@ export const orderApi = {
   updateStatus: (id: string, status: string) =>
     request(`/orders/${id}/status`, { method: 'PUT', body: JSON.stringify({ status }) }),
 };
+
+// Admin APIs
+export const adminApi = {
+  getStats: () => request('/admin/stats'),
+
+  // Users
+  getUsers: () => request('/admin/users'),
+  deleteUser: (id: string) => request(`/admin/users/${id}`, { method: 'DELETE' }),
+  updateUserRole: (id: string, role: string) =>
+    request(`/admin/users/${id}/role`, { method: 'PUT', body: JSON.stringify({ role }) }),
+
+  // Products
+  getProducts: (params?: any) => {
+    const query = new URLSearchParams(params).toString();
+    return request(`/admin/products?${query}`);
+  },
+  createProduct: (body: any) =>
+    request('/admin/products', { method: 'POST', body: JSON.stringify(body) }),
+  updateProduct: (id: string, body: any) =>
+    request(`/admin/products/${id}`, { method: 'PUT', body: JSON.stringify(body) }),
+  deleteProduct: (id: string) =>
+    request(`/admin/products/${id}`, { method: 'DELETE' }),
+
+  // Orders
+  getOrders: () => request('/admin/orders'),
+  updateOrderStatus: (id: string, status: string) =>
+    request(`/admin/orders/${id}/status`, { method: 'PUT', body: JSON.stringify({ status }) }),
+};
+
+// Image upload — FormData use karta hai, JSON nahi
+export const uploadImage = async (file: File): Promise<string> => {
+  const token = getToken();
+  const formData = new FormData();
+  formData.append('image', file);
+
+  const res = await fetch(`${API_URL}/upload`, {
+    method: 'POST',
+    headers: {
+      // Content-Type mat likho — browser khud set karta hai FormData ke liye
+      ...(token && { Authorization: `Bearer ${token}` }),
+    },
+    body: formData,
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || 'Upload fail ho gaya!');
+
+  // Full URL return karo
+  return `http://localhost:5000${data.imageUrl}`;
+};

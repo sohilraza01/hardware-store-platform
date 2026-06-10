@@ -73,8 +73,10 @@ export default function CheckoutPage() {
     return (
       <PageTransition>
         <div className="min-h-screen flex flex-col items-center justify-center gap-6 text-center px-4">
+            {/* @ts-ignore */}
           <motion-div>
             <CheckCircle size={80} className="text-green-500 mx-auto" />
+            {/* @ts-ignore */}
           </motion-div>
           <h2 className="text-3xl font-black uppercase tracking-tight">
             Order Place Ho Gaya! 🎉

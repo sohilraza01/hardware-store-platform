@@ -13,8 +13,6 @@ import { useLocation } from "wouter";
 import { useEffect } from "react";
 
 import { CartProvider } from '@/context/CartContext';
-import CartPage from '@/pages/CartPage';
-import CheckoutPage from '@/pages/CheckoutPage';
 
 
 // Pages
@@ -24,6 +22,10 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
+import CartPage from '@/pages/CartPage';
+import CheckoutPage from '@/pages/CheckoutPage';
+import AdminPanel from '@/pages/AdminPanel';
+import OrdersPage from '@/pages/OrdersPage';
 
 const queryClient = new QueryClient();
 
@@ -86,6 +88,9 @@ function Router() {
         <Route path="/contact">
           <Layout><ScrollToTop /><Contact /></Layout>
         </Route>
+        <Route path="/orders">
+        <Layout><ScrollToTop /><OrdersPage /></Layout>
+          </Route>
 
         {/* Auth routes — Navbar/Footer nahi chahiye */}
         <Route path="/login">
@@ -99,6 +104,9 @@ function Router() {
        </Route>
       <Route path="/checkout">
       <ProtectedRoute component={() => <Layout><CheckoutPage /></Layout>} />
+      </Route>
+      <Route path="/admin">
+      <ProtectedRoute component={AdminPanel} />
       </Route>
 
         <Route component={NotFound} />
