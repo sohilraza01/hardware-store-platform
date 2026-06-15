@@ -109,7 +109,7 @@ function ProductCard({ product }: { product: any }) {
             {product.stock > 10
               ? 'In Stock'
               : product.stock > 0
-              ? `Sirf ${product.stock} bache`
+              ? `Only ${product.stock} left`
               : 'Out of Stock'}
           </span>
         </div>
@@ -309,7 +309,7 @@ export default function Products() {
                   className="mt-6 rounded-none font-bold uppercase"
                   onClick={clearFilters}
                 >
-                  Sab Products Dekho
+                  See All Products
                 </Button>
               )}
             </div>
@@ -337,7 +337,7 @@ export default function Products() {
                     disabled={page === 1}
                     onClick={() => setPage(p => p - 1)}
                   >
-                    Pehle
+                    Previous
                   </Button>
                   <span className="text-sm font-medium">
                     Page {page} of {totalPages}
@@ -348,7 +348,7 @@ export default function Products() {
                     disabled={page === totalPages}
                     onClick={() => setPage(p => p + 1)}
                   >
-                    Agle
+                    Next
                   </Button>
                 </div>
               )}

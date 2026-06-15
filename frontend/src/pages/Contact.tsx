@@ -83,7 +83,6 @@ export default function Contact() {
                         <tbody>
                           <tr><td className="py-1">Mon - Sat</td><td className="text-right font-medium text-foreground px-1">9:00 AM - 9:00 PM</td></tr>
                           <tr><td className="py-1">Sunday</td><td className="text-right font-medium text-foreground">9:00 AM - 5:00 PM</td></tr>
-                          {/* <tr><td className="py-1">Sunday</td><td className="text-right font-medium text-foreground">Closed</td></tr> */}
                         </tbody>
                       </table>
                     </div>

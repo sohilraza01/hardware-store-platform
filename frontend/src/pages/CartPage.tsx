@@ -16,9 +16,9 @@ export default function CartPage() {
       <PageTransition>
         <div className="min-h-screen flex flex-col items-center justify-center gap-6 text-center px-4">
           <ShoppingCart size={80} className="text-muted-foreground opacity-20" />
-          <h2 className="text-3xl font-black uppercase tracking-tight">Cart Khali Hai!</h2>
+          <h2 className="text-3xl font-black uppercase tracking-tight">Cart Empty!</h2>
           <p className="text-muted-foreground text-lg">
-            No any product add yet.
+            No product add yet.
           </p>
           <Button
             className="rounded-none font-bold uppercase tracking-wider px-8"
@@ -36,7 +36,7 @@ export default function CartPage() {
       <section className="bg-zinc-950 py-16 text-center">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
-            Tumhara <span className="text-primary">Cart</span>
+            Cart <span className="text-primary">Catalog</span>
           </h1>
           <p className="text-zinc-400 mt-2">{totalItems} items</p>
         </div>
@@ -145,7 +145,7 @@ export default function CartPage() {
                     </span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Shipping checkout pe calculate hoga
+                    Calculate at Shipping checkout
                   </p>
                 </div>
 
@@ -159,7 +159,7 @@ export default function CartPage() {
                     }
                   }}
                 >
-                  {user ? 'Checkout Karo' : 'Login Karke Checkout Karo'}
+                  {user ? 'Checkout' : 'Checkout after Login'}
                   <ArrowRight size={16} />
                 </Button>
 
@@ -168,7 +168,7 @@ export default function CartPage() {
                   className="w-full mt-3 rounded-none font-bold uppercase tracking-wider"
                   onClick={() => navigate('/products')}
                 >
-                  Shopping Jaari Rakho
+                  Continue Shopping
                 </Button>
               </div>
             </div>

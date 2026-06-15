@@ -13,10 +13,10 @@ import { PageTransition } from '@/components/PageTransition';
 import { Loader2, CheckCircle } from 'lucide-react';
 
 const checkoutSchema = z.object({
-  address: z.string().min(10, 'Pura address likho'),
-  city: z.string().min(2, 'City ka naam likho'),
-  pinCode: z.string().length(6, 'PIN code 6 digits ka hona chahiye'),
-  phone: z.string().min(10, 'Valid phone number likho'),
+  address: z.string().min(10, 'Enter Full Address'),
+  city: z.string().min(2, 'Enter City Name'),
+  pinCode: z.string().length(6, 'Enter PIN Code'),
+  phone: z.string().min(10, 'Enter Valid Phone Number'),
 });
 
 type CheckoutForm = z.infer<typeof checkoutSchema>;
@@ -60,9 +60,9 @@ export default function CheckoutPage() {
       setOrderId(order._id);
       setOrderPlaced(true);
       clearCart();
-      toast.success('Order place ho gaya! 🎉');
+      toast.success('Order placed! 🎉');
     } catch (error: any) {
-      toast.error(error.message || 'Order place nahi ho paya!');
+      toast.error(error.message || 'Order not placed!');
     } finally {
       setIsLoading(false);
     }
@@ -79,10 +79,10 @@ export default function CheckoutPage() {
             {/* @ts-ignore */}
           </motion-div>
           <h2 className="text-3xl font-black uppercase tracking-tight">
-            Order Place Ho Gaya! 🎉
+            Order Placed Successfully! 🎉
           </h2>
           <p className="text-muted-foreground text-lg max-w-md">
-            Tumhara order successfully place ho gaya hai. Hum jald hi deliver karenge!
+            Your Order has been successfully placed. We will deliver it soon!
           </p>
           <p className="text-sm text-muted-foreground font-mono bg-muted px-4 py-2">
             Order ID: {orderId}
@@ -92,14 +92,14 @@ export default function CheckoutPage() {
               className="rounded-none font-bold uppercase tracking-wider"
               onClick={() => navigate('/orders')}
             >
-              Apne Orders Dekho
+              See Your Orders
             </Button>
             <Button
               variant="outline"
               className="rounded-none font-bold uppercase tracking-wider"
               onClick={() => navigate('/products')}
             >
-              Aur Shopping Karo
+              Do More Shopping
             </Button>
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function CheckoutPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Naam
+                    Name
                   </label>
                   <Input
                     value={user?.name}
@@ -141,11 +141,11 @@ export default function CheckoutPage() {
 
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Pura Address *
+                    Full Address *
                   </label>
                   <Input
                     {...register('address')}
-                    placeholder="Ghar ka number, gali, mohalla..."
+                    placeholder="House Number, Streat, Area..."
                     className="rounded-none"
                   />
                   {errors.address && (
@@ -158,7 +158,7 @@ export default function CheckoutPage() {
                     <label className="block text-sm font-medium mb-1">City *</label>
                     <Input
                       {...register('city')}
-                      placeholder="Meerut"
+                      placeholder="New Delhi"
                       className="rounded-none"
                     />
                     {errors.city && (
@@ -169,7 +169,7 @@ export default function CheckoutPage() {
                     <label className="block text-sm font-medium mb-1">PIN Code *</label>
                     <Input
                       {...register('pinCode')}
-                      placeholder="250001"
+                      placeholder="110015"
                       maxLength={6}
                       className="rounded-none"
                     />
@@ -183,7 +183,7 @@ export default function CheckoutPage() {
                   <label className="block text-sm font-medium mb-1">Phone *</label>
                   <Input
                     {...register('phone')}
-                    placeholder="9876543210"
+                    placeholder="1234567890"
                     className="rounded-none"
                   />
                   {errors.phone && (
@@ -201,7 +201,7 @@ export default function CheckoutPage() {
                     <span className="font-medium">Cash on Delivery (COD)</span>
                   </div>
                   <p className="text-sm text-muted-foreground mt-2">
-                    Delivery pe payment karo — bilkul safe!
+                    Pay on Delivery — Completely safe!
                   </p>
                 </div>
 
@@ -213,7 +213,7 @@ export default function CheckoutPage() {
                   {isLoading ? (
                     <>
                       <Loader2 className="animate-spin mr-2" size={18} />
-                      Order Place Ho Raha Hai...
+                      Order is Placing...
                     </>
                   ) : (
                     `Order Place Karo — ₹${totalPrice.toLocaleString('en-IN')}`

@@ -99,10 +99,10 @@ export function Navbar() {
                     <DropdownMenuSeparator />
                   </>
                 )}
-                <DropdownMenuItem onClick={() => navigate("/profile")} className="cursor-pointer">
+                {/* <DropdownMenuItem onClick={() => navigate("/profile")} className="cursor-pointer">
                   <User size={16} className="mr-2" />
                   My Profile
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
                 <DropdownMenuItem onClick={() => navigate("/orders")} className="cursor-pointer">
                   My Orders
                 </DropdownMenuItem>

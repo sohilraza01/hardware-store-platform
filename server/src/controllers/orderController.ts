@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import Order from '../models/Order';
 
-// POST /api/orders — naya order banao
+// POST /api/orders — Create a new Order
 export const createOrder = async (req: any, res: Response) => {
   try {
     const { orderItems, shippingAddress, totalPrice } = req.body;
 
     if (!orderItems || orderItems.length === 0) {
-      return res.status(400).json({ message: 'Cart khali hai!' });
+      return res.status(400).json({ message: 'Cart is Empty!' });
     }
 
     const order = await Order.create({
@@ -23,7 +23,7 @@ export const createOrder = async (req: any, res: Response) => {
   }
 };
 
-// GET /api/orders/my — mera apna orders
+// GET /api/orders/my — My Orders
 export const getMyOrders = async (req: any, res: Response) => {
   try {
     const orders = await Order.find({ user: req.user._id })
@@ -46,7 +46,7 @@ export const getOrderById = async (req: any, res: Response) => {
       return res.status(404).json({ message: 'Order nahi mila!' });
     }
 
-    // Sirf apna order dekh sakta hai, ya admin
+    
     if (order.user._id.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Access nahi hai!' });
     }
@@ -69,7 +69,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
   }
 };
 
-// PUT /api/orders/:id/status — order status update (admin only)
+// PUT /api/orders/:id/status
 export const updateOrderStatus = async (req: Request, res: Response) => {
   try {
     const { status } = req.body;

@@ -35,9 +35,9 @@ export default function OrdersPage() {
       <section className="bg-zinc-950 py-16 text-center">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
-            Mere <span className="text-primary">Orders</span>
+            My <span className="text-primary">Orders</span>
           </h1>
-          <p className="text-zinc-400 mt-2">Tumhare sabhi orders yahan hain</p>
+          <p className="text-zinc-400 mt-2">All Your orders are here!</p>
         </div>
       </section>
 
@@ -51,16 +51,16 @@ export default function OrdersPage() {
             <div className="flex flex-col items-center justify-center py-20 gap-6 text-center">
               <Package size={80} className="text-muted-foreground opacity-20" />
               <h2 className="text-2xl font-black uppercase tracking-tight">
-                Koi Order Nahi Hai!
+                No Order!
               </h2>
               <p className="text-muted-foreground">
-                Abhi tak koi order place nahi kiya.
+                No Order has been placed yet.
               </p>
               <Button
                 className="rounded-none font-bold uppercase tracking-wider"
                 onClick={() => navigate('/products')}
               >
-                Shopping Karo
+                Do Shopping
               </Button>
             </div>
           ) : (

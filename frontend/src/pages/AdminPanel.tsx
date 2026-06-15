@@ -75,9 +75,9 @@ function ProductModal({ product, onClose, onSave }: any) {
       setUploading(true);
       const url = await uploadImage(file);
       setImageUrl(url);
-      toast.success('Image upload ho gayi! ✅');
+      toast.success('Image uploaded successfully! ✅');
     } catch (error: any) {
-      toast.error(error.message || 'Image upload fail ho gayi!');
+      toast.error(error.message || 'Failed to image upload!');
     } finally {
       setUploading(false);
     }
@@ -135,13 +135,13 @@ function ProductModal({ product, onClose, onSave }: any) {
                   {uploading ? (
                     <>
                       <Loader2 size={32} className="animate-spin text-primary" />
-                      <p className="text-sm">Upload ho raha hai...</p>
+                      <p className="text-sm">Uploading...</p>
                     </>
                   ) : (
                     <>
                       <ImageIcon size={32} className="opacity-40" />
-                      <p className="text-sm">Click karke image upload karo</p>
-                      <p className="text-xs opacity-60">JPG, PNG, WebP — max 5MB</p>
+                      <p className="text-sm">Click to upload image</p>
+                      <p className="text-xs opacity-60">JPG, PNG, WebP — max 20MB</p>
                     </>
                   )}
                 </div>
@@ -175,7 +175,7 @@ function ProductModal({ product, onClose, onSave }: any) {
             <label className="block text-sm font-medium mb-1">Description *</label>
             <textarea
               {...register('description')}
-              placeholder="Product ki detail..."
+              placeholder="Product detail..."
               rows={3}
               className="w-full border border-input rounded-none px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none bg-background"
             />
@@ -202,7 +202,7 @@ function ProductModal({ product, onClose, onSave }: any) {
                 {...register('category')}
                 className="w-full border border-input rounded-none px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring bg-background"
               >
-                <option value="">Category chuno</option>
+                <option value="">Select Category</option>
                 {['Tools', 'Electrical', 'Plumbing', 'Safety', 'Paints', 'Fasteners', 'Other'].map(c => (
                   <option key={c} value={c}>{c}</option>
                 ))}
@@ -222,7 +222,7 @@ function ProductModal({ product, onClose, onSave }: any) {
               disabled={uploading}
               className="flex-1 rounded-none font-bold uppercase"
             >
-              {product ? 'Update Karo' : 'Add Karo'}
+              {product ? 'Do Update' : 'Do Add'}
             </Button>
             <Button type="button" variant="outline" onClick={onClose} className="rounded-none">
               Cancel
@@ -279,7 +279,7 @@ export default function AdminPanel() {
     mutationFn: adminApi.createProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-products'] });
-      toast.success('Product add ho gaya! ✅');
+      toast.success('Product added successfully! ✅');
       setShowProductModal(false);
     },
     onError: (err: any) => toast.error(err.message),
@@ -289,7 +289,7 @@ export default function AdminPanel() {
     mutationFn: ({ id, data }: any) => adminApi.updateProduct(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-products'] });
-      toast.success('Product update ho gaya! ✅');
+      toast.success('Product updated successfully! ✅');
       setShowProductModal(false);
       setEditingProduct(null);
     },
@@ -300,7 +300,7 @@ export default function AdminPanel() {
     mutationFn: adminApi.deleteProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-products'] });
-      toast.success('Product delete ho gaya!');
+      toast.success('Product deleted successfully!');
     },
     onError: (err: any) => toast.error(err.message),
   });
@@ -309,7 +309,7 @@ export default function AdminPanel() {
     mutationFn: ({ id, status }: any) => adminApi.updateOrderStatus(id, status),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-orders'] });
-      toast.success('Order status update ho gaya! ✅');
+      toast.success('Order status updated successfully! ✅');
     },
     onError: (err: any) => toast.error(err.message),
   });
@@ -318,7 +318,7 @@ export default function AdminPanel() {
     mutationFn: adminApi.deleteUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-users'] });
-      toast.success('User delete ho gaya!');
+      toast.success('User deleted!');
     },
   });
 
@@ -358,7 +358,7 @@ export default function AdminPanel() {
             className="rounded-none border-zinc-600 text-white hover:bg-zinc-800"
             onClick={() => navigate('/')}
           >
-            Site Pe Jao
+            Go to Site
           </Button>
         </div>
       </div>
@@ -452,7 +452,7 @@ export default function AdminPanel() {
                 onClick={() => { setEditingProduct(null); setShowProductModal(true); }}
               >
                 <Plus size={16} />
-                Naya Product
+                New Product
               </Button>
             </div>
 
@@ -504,7 +504,7 @@ export default function AdminPanel() {
                             </button>
                             <button
                               onClick={() => {
-                                if (confirm('Product delete karna chahte ho?')) {
+                                if (confirm('Do You Want to Delete Product?')) {
                                   deleteMutation.mutate(product._id);
                                 }
                               }}
@@ -520,7 +520,7 @@ export default function AdminPanel() {
                 </table>
                 {productsData?.products?.length === 0 && (
                   <div className="text-center py-12 text-muted-foreground">
-                    Koi product nahi hai abhi. Upar se add karo!
+                    No product yet. Add from top!
                   </div>
                 )}
               </div>
@@ -532,7 +532,7 @@ export default function AdminPanel() {
         {activeTab === 'orders' && (
           <div className="space-y-6">
             <h2 className="text-xl font-black uppercase tracking-tight">
-              Sabhi Orders
+              All Orders
             </h2>
 
             {ordersLoading ? (
@@ -591,7 +591,7 @@ export default function AdminPanel() {
                 </table>
                 {orders?.length === 0 && (
                   <div className="text-center py-12 text-muted-foreground">
-                    Koi order nahi hai abhi.
+                    No order yet.
                   </div>
                 )}
               </div>
@@ -603,7 +603,7 @@ export default function AdminPanel() {
         {activeTab === 'users' && (
           <div className="space-y-6">
             <h2 className="text-xl font-black uppercase tracking-tight">
-              Sabhi Users
+              All Users
             </h2>
 
             {usersLoading ? (
@@ -642,7 +642,7 @@ export default function AdminPanel() {
                         <td className="p-3">
                           <button
                             onClick={() => {
-                              if (confirm('User delete karna chahte ho?')) {
+                              if (confirm('Do You Wan to delete User?')) {
                                 deleteUserMutation.mutate(user._id);
                               }
                             }}

@@ -39,7 +39,7 @@ export const login = async (req: Request, res: Response) => {
 
     const user = await User.findOne({ email });
     if (!user || !(await user.matchPassword(password))) {
-      return res.status(401).json({ message: 'Email ya password galat hai!' });
+      return res.status(401).json({ message: 'Invalid Email or Password!' });
     }
 
     res.json({

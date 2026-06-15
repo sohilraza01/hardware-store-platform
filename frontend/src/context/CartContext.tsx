@@ -48,13 +48,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           toast.error('Stock mein itna nahi hai!');
           return prev;
         }
-        toast.success('Cart mein ek aur add ho gaya!');
+        toast.success('Another one got added to the cart!');
         return prev.map(i =>
           i._id === item._id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
       // Naya item add karo
-      toast.success(`${item.name} cart mein add ho gaya! 🛒`);
+      toast.success(`${item.name} added to cart successfully! 🛒`);
       return [...prev, { ...item, quantity: 1 }];
     });
   };

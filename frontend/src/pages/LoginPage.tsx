@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 import { useAuth } from '@/context/AuthContext';
 
 const loginSchema = z.object({
-  email: z.string().email('Please Write Valid Email'),
+  email: z.string().email('Please Enter Valid Email'),
   password: z.string().min(6, 'Password must have 6 characters'),
 });
 
