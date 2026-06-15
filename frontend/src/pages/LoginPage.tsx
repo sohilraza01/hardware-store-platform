@@ -7,8 +7,8 @@ import { toast } from 'sonner';
 import { useAuth } from '@/context/AuthContext';
 
 const loginSchema = z.object({
-  email: z.string().email('Valid email likho'),
-  password: z.string().min(6, 'Password 6 characters ka hona chahiye'),
+  email: z.string().email('Please Write Valid Email'),
+  password: z.string().min(6, 'Password must have 6 characters'),
 });
 
 type LoginForm = z.infer<typeof loginSchema>;
@@ -26,10 +26,10 @@ export default function LoginPage() {
     try {
       setIsLoading(true);
       await login(data.email, data.password);
-      toast.success('Login ho gaye! 🎉');
+      toast.success('Login Successfully! 🎉');
       navigate('/');
     } catch (error: any) {
-      toast.error(error.message || 'Login fail ho gaya!');
+      toast.error(error.message || 'Login Failed');
     } finally {
       setIsLoading(false);
     }
@@ -42,7 +42,7 @@ export default function LoginPage() {
         {/* Logo / Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Ahmadi Hardware</h1>
-          <p className="text-gray-500 mt-2">Apne account mein login karo</p>
+          <p className="text-gray-500 mt-2">Login to Your Account</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -55,7 +55,7 @@ export default function LoginPage() {
             <input
               {...register('email')}
               type="email"
-              placeholder="ahmed@example.com"
+              placeholder="ahmadi@example.com"
               className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.email && (
@@ -85,15 +85,15 @@ export default function LoginPage() {
             disabled={isLoading}
             className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 transition"
           >
-            {isLoading ? 'Login ho raha hai...' : 'Login Karo'}
+            {isLoading ? 'Logining...' : 'Login'}
           </button>
         </form>
 
         {/* Register Link */}
         <p className="text-center text-gray-500 mt-6">
-          Account nahi hai?{' '}
+          Don't have an Account?{' '}
           <a href="/register" className="text-blue-600 font-medium hover:underline">
-            Register karo
+            Register
           </a>
         </p>
       </div>

@@ -1,7 +1,8 @@
 import { Link } from "wouter";
 import { Logo } from "./Logo";
 import { SiFacebook, SiInstagram, SiX } from "react-icons/si";
-import { Linkedin } from "lucide-react";
+import {FaMapMarkerAlt, FaPhoneAlt, FaEnvelope} from "react-icons/fa";
+
 
 export function Footer() {
   return (
@@ -11,20 +12,17 @@ export function Footer() {
           <div className="space-y-4">
             <Logo />
             <p className="text-muted-foreground text-sm mt-4 leading-relaxed">
-              Industrial strength meets modern precision. Ahmadi Hardware has been supplying top-tier tools and materials to professionals and enthusiasts for over 25 years.
+              Industrial strength meets modern precision. Ahmadi Hardware has been supplying top-tier tools and materials to professionals and enthusiasts for over 2 years.
             </p>
             <div className="flex items-center gap-4 pt-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/ahmadi_hardware?igsh=MTU4enV2NGV2cTN0Zw==" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiFacebook size={20} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/ahmadi_hardware?igsh=MTU4enV2NGV2cTN0Zw==" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiInstagram size={20} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/ahmadi_hardware?igsh=MTU4enV2NGV2cTN0Zw==" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiX size={20} />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin size={20} />
               </a>
             </div>
           </div>
@@ -69,16 +67,16 @@ export function Footer() {
             <h3 className="font-bold text-lg mb-4 text-foreground uppercase tracking-wider">Contact Info</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <span className="font-medium text-foreground">A:</span>
-                123 Industrial Parkway, Suite 100<br />Metropolis, ST 12345
+                <span className="font-medium text-foreground flex items-center gap-2"><FaMapMarkerAlt/>:</span>
+                A-49 Timber Market, Kirti Nagar<br />New Delhi, 110015
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-medium text-foreground">P:</span>
-                +1 (555) 123-4567
+                <span className="font-medium text-foreground flex items-center gap-2"><FaPhoneAlt/>:</span>
+                +91 9690607659 <br /> +91 7668393492
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-medium text-foreground">E:</span>
-                info@ahmadihardware.com
+                <span className="font-medium text-foreground flex items-center gap-2"><FaEnvelope/>:</span>
+                shimabali123@gmail.com
               </li>
             </ul>
           </div>

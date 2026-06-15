@@ -18,9 +18,9 @@ const categories = [
 ];
 
 const stats = [
-  { label: "Years in Business", value: 25, suffix: "+" },
-  { label: "Products", value: 10000, suffix: "+" },
-  { label: "Happy Customers", value: 5000, suffix: "+" },
+  { label: "Years in Business", value: 2, suffix: "+" },
+  { label: "Products", value: 1000, suffix: "+" },
+  { label: "Happy Customers", value: 500, suffix: "+" },
   { label: "Top Brands", value: 150, suffix: "+" },
 ];
 
@@ -121,7 +121,7 @@ export default function Home() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-none h-14 px-8 text-lg font-bold uppercase tracking-wider border-2 border-white text-white hover:bg-white hover:text-zinc-950 bg-transparent">
-                <Link href="/contact">Get a Quote</Link>
+                <Link href="/contact">Contact Us</Link>
               </Button>
             </motion.div>
           </div>

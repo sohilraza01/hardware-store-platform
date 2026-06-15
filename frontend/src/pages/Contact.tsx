@@ -48,7 +48,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-bold text-lg">Address</h4>
-                      <p className="text-muted-foreground mt-1">123 Industrial Parkway, Suite 100<br />Metropolis, ST 12345</p>
+                      <p className="text-muted-foreground mt-1">A-49 Timber Market, Kirti Nagar<br />New Delhi 110015</p>
                     </div>
                   </div>
 
@@ -58,8 +58,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-bold text-lg">Phone</h4>
-                      <p className="text-muted-foreground mt-1">+1 (555) 123-4567</p>
-                      <p className="text-sm text-primary mt-1 font-medium">Contractor Sales: Ext 2</p>
+                      <p className="text-muted-foreground mt-1">+91 9690607659</p>
+                      <p className="text-sm text-primary mt-1 font-medium">+91 7668393492</p>
                     </div>
                   </div>
 
@@ -69,8 +69,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-bold text-lg">Email</h4>
-                      <p className="text-muted-foreground mt-1">info@ahmadihardware.com</p>
-                      <p className="text-muted-foreground">quotes@ahmadihardware.com</p>
+                      <p className="text-muted-foreground mt-1">shimabali123@gmail.com</p>
                     </div>
                   </div>
 
@@ -82,9 +81,9 @@ export default function Contact() {
                       <h4 className="font-bold text-lg">Operating Hours</h4>
                       <table className="w-full text-muted-foreground mt-1 max-w-xs">
                         <tbody>
-                          <tr><td className="py-1">Mon - Fri</td><td className="text-right font-medium text-foreground">6:00 AM - 6:00 PM</td></tr>
-                          <tr><td className="py-1">Saturday</td><td className="text-right font-medium text-foreground">7:00 AM - 4:00 PM</td></tr>
-                          <tr><td className="py-1">Sunday</td><td className="text-right font-medium text-foreground">Closed</td></tr>
+                          <tr><td className="py-1">Mon - Sat</td><td className="text-right font-medium text-foreground px-1">9:00 AM - 9:00 PM</td></tr>
+                          <tr><td className="py-1">Sunday</td><td className="text-right font-medium text-foreground">9:00 AM - 5:00 PM</td></tr>
+                          {/* <tr><td className="py-1">Sunday</td><td className="text-right font-medium text-foreground">Closed</td></tr> */}
                         </tbody>
                       </table>
                     </div>

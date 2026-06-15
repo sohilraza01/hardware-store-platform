@@ -65,10 +65,7 @@ export function Navbar() {
             </Link>
           ))}
 
-          <Button asChild className="rounded-none font-bold uppercase tracking-wider">
-            <Link href="/contact">Get Quote</Link>
-          </Button>
-
+        
           {/* Cart Icon */}
           <button
             onClick={() => navigate('/cart')}
@@ -120,13 +117,9 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button
-              variant="outline"
-              className="rounded-none font-bold uppercase tracking-wider"
-              onClick={() => navigate("/login")}
-            >
-              Login
-            </Button>
+            <Button asChild className="rounded-none font-bold uppercase tracking-wider">
+            <Link href="/login">Login</Link>
+          </Button>
           )}
         </nav>
 
@@ -176,11 +169,7 @@ export function Navbar() {
                 </Link>
               ))}
 
-              <Button asChild className="rounded-none">
-                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Get Quote
-                </Link>
-              </Button>
+             
 
               {user ? (
                 <div className="border-t border-border pt-4 mt-2 flex flex-col gap-3">

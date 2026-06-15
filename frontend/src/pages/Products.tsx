@@ -10,6 +10,9 @@ import { useQuery } from "@tanstack/react-query";
 import { productApi } from "@/lib/api";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
+import { useLocation } from "wouter";
+import { toast } from "sonner";
 
 const categoryIcons: Record<string, any> = {
   Tools: Hammer,
@@ -26,13 +29,31 @@ const CATEGORIES = ["Tools", "Electrical", "Plumbing", "Safety", "Paints", "Fast
 // ─── Product Card ─────────────────────────────────────
 function ProductCard({ product }: { product: any }) {
   const { addToCart } = useCart();
+  const { user } = useAuth();
+  const [, navigate] = useLocation();
   const Icon = categoryIcons[product.category] || Box;
+
+  const handleAddToCart = () => {
+    if (!user) {
+      toast.error('You Need to Login First! 🔐');
+      navigate('/login');
+      return;
+    }
+    addToCart({
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.images?.[0] || '',
+      stock: product.stock,
+      brand: product.brand,
+    });
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="border border-border bg-background group hover:border-primary transition-all duration-300 flex flex-col"
+      className="bg-background group transition-all duration-300 flex flex-col"
     >
       {/* Image */}
       <div className="aspect-[4/3] bg-muted overflow-hidden relative">
@@ -96,17 +117,12 @@ function ProductCard({ product }: { product: any }) {
         <Button
           className="w-full rounded-none font-bold uppercase tracking-wider flex items-center gap-2"
           disabled={product.stock === 0}
-          onClick={() => addToCart({
-            _id: product._id,
-            name: product.name,
-            price: product.price,
-            image: product.images?.[0] || '',
-            stock: product.stock,
-            brand: product.brand,
-          })}
+          onClick={handleAddToCart}
         >
           <ShoppingCart size={16} />
-          {product.stock > 0 ? 'Cart Mein Daalo' : 'Out of Stock'}
+          {product.stock > 0
+            ? user ? 'Add to Cart' : 'Add to Cart'
+            : 'Out of Stock'}
         </Button>
       </div>
     </motion.div>
@@ -121,17 +137,16 @@ export default function Products() {
   const [showFilters, setShowFilters] = useState(false);
   const [page, setPage] = useState(1);
 
-  // Hamesha fetch karo — search/filter optional
- const { data, isLoading, isError } = useQuery({
-  queryKey: ["products", search, activeCategory, page],
-  queryFn: () => productApi.getAll({
-    search: search || undefined,
-    category: activeCategory || undefined,
-    page,
-    limit: 12,
-  }),
-  // enabled nahi chahiye — hamesha fetch karo
-});
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["products", search, activeCategory, page],
+    queryFn: () => productApi.getAll({
+      search: search || undefined,
+      category: activeCategory || undefined,
+      page,
+      limit: 12,
+    }),
+  });
+
   const products = data?.products || [];
   const totalPages = data?.totalPages || 1;
   const total = data?.total || 0;
@@ -186,7 +201,6 @@ export default function Products() {
 
           {/* Search + Filter Bar */}
           <div className="flex flex-col md:flex-row gap-3 mb-6">
-            {/* Search */}
             <div className="flex flex-1 gap-2">
               <div className="relative flex-grow">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
@@ -206,19 +220,18 @@ export default function Products() {
               </Button>
             </div>
 
-            {/* Filter Toggle (Mobile) */}
             <Button
               variant="outline"
               className="h-12 rounded-none font-bold uppercase tracking-wider flex items-center gap-2 md:hidden"
               onClick={() => setShowFilters(!showFilters)}
             >
               <SlidersHorizontal size={16} />
-              Filters {activeCategory && `(1)`}
+              Filters {activeCategory && "(1)"}
             </Button>
           </div>
 
           {/* Category Filters */}
-          <div className={`flex flex-wrap gap-2 mb-8 ${showFilters || 'hidden md:flex'}`}>
+          <div className={`flex flex-wrap gap-2 mb-8 ${showFilters ? 'flex' : 'hidden md:flex'}`}>
             <button
               onClick={clearFilters}
               className={`px-4 py-2 text-sm font-bold uppercase tracking-wider border-2 transition-colors ${
@@ -278,17 +291,17 @@ export default function Products() {
           ) : isError ? (
             <div className="text-center py-32">
               <p className="text-xl font-black uppercase text-muted-foreground">
-                Backend se connect nahi ho pa raha
+                Failed to connect to the backend
               </p>
               <p className="text-sm text-muted-foreground mt-2">
-                Make sure server chal raha hai: localhost:5000
+                Make sure the server is running
               </p>
             </div>
           ) : products.length === 0 ? (
             <div className="text-center py-32">
               <Box size={64} className="text-muted-foreground opacity-20 mx-auto mb-4" />
               <p className="text-2xl font-black uppercase text-muted-foreground">
-                Koi product nahi mila
+                No product found
               </p>
               {hasFilters && (
                 <Button

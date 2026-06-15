@@ -18,13 +18,13 @@ export default function CartPage() {
           <ShoppingCart size={80} className="text-muted-foreground opacity-20" />
           <h2 className="text-3xl font-black uppercase tracking-tight">Cart Khali Hai!</h2>
           <p className="text-muted-foreground text-lg">
-            Koi product add nahi kiya abhi tak.
+            No any product add yet.
           </p>
           <Button
             className="rounded-none font-bold uppercase tracking-wider px-8"
             onClick={() => navigate('/products')}
           >
-            Products Dekho
+            See Products
           </Button>
         </div>
       </PageTransition>

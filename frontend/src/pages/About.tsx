@@ -32,13 +32,19 @@ export default function About() {
               <div className="w-20 h-1 bg-primary" />
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  Founded in 1999 by David Ahmadi, a former general contractor who was frustrated with the lack of reliable supply houses in the area. He knew what builders needed: good stock, honest advice, and materials that wouldn't fail on site.
+                  Welcome to Ahmadi Hardware, your trusted destination for quality hardware, plywood, construction materials, and essential tools. Established in 2025, our company was founded with a commitment to providing durable products, reliable service, and complete customer satisfaction.
                 </p>
                 <p>
-                  We started as a small 2,000 sq ft shop specializing in heavy-duty fasteners and power tools. Today, Ahmadi Hardware operates out of a 50,000 sq ft facility, serving the largest construction firms and most dedicated home craftsmen in the region.
+                  Ahmadi Hardware was founded by Sharik Ali and co-founded by Shimab Ali, two brothers who turned their shared vision and dedication into a growing business built on trust, quality, and strong customer relationships.
                 </p>
                 <p>
-                  We haven't lost sight of why we started. When you walk through our doors, you're talking to people who have actually used the tools they're selling.
+                  We offer a wide range of products, including plywood, doors, laminates, nails, hammers, hand tools, construction accessories, and various hardware essentials required for homes, workshops, and building projects. Every product we provide is carefully selected to ensure quality, durability, and value for money.
+                </p>
+                <p>
+                   Our goal is to make quality hardware products easily accessible through both traditional and online channels, helping customers find everything they need in one place. We believe that trust, transparency, and consistent service are the foundation of long-term success.
+                </p>
+                <p>
+                  As we continue to grow, our mission remains the same: to deliver dependable products, competitive prices, and exceptional customer support while building lasting relationships with customers across the region.
                 </p>
               </div>
             </motion.div>
