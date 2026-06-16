@@ -45,7 +45,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       if (exists) {
         // Pehle se hai toh quantity badhao
         if (exists.quantity >= item.stock) {
-          toast.error('Stock mein itna nahi hai!');
+          toast.error('out of Stock!');
           return prev;
         }
         toast.success('Another one got added to the cart!');
@@ -61,7 +61,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const removeFromCart = (id: string) => {
     setCartItems(prev => prev.filter(i => i._id !== id));
-    toast.success('Item cart se hata diya!');
+    toast.success('Item remove from cart!');
   };
 
   const updateQuantity = (id: string, quantity: number) => {
@@ -70,7 +70,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       prev.map(i => {
         if (i._id === id) {
           if (quantity > i.stock) {
-            toast.error('Stock mein itna nahi hai!');
+            toast.error('Out of Stock!');
             return i;
           }
           return { ...i, quantity };

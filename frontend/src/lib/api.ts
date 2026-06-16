@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://ahmadi-hardwarfe-backend.onrender.com/api';
 
 // Token localStorage se lao
 const getToken = () => localStorage.getItem('token');
@@ -19,7 +19,7 @@ const request = async (endpoint: string, options: RequestInit = {}) => {
   const data = await res.json();
 
   if (!res.ok) {
-    throw new Error(data.message || 'Kuch gadbad ho gayi!');
+    throw new Error(data.message || 'Something Wrong!');
   }
 
   return data;
@@ -130,8 +130,8 @@ export const uploadImage = async (file: File): Promise<string> => {
   });
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data.message || 'Upload fail ho gaya!');
+  if (!res.ok) throw new Error(data.message || 'Upload Failed!');
 
   // Full URL return karo
-  return `http://localhost:5000${data.imageUrl}`;
+  return `https://ahmadi-hardwarfe-backend.onrender.com${data.imageUrl}`;
 };
