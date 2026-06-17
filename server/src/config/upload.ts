@@ -28,7 +28,7 @@ const fileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCa
   if (extname && mimetype) {
     cb(null, true);
   } else {
-    cb(new Error('Sirf images allowed hain! (jpg, jpeg, png, webp)'));
+    cb(new Error('Only images allowed! (jpg, jpeg, png, webp)'));
   }
 };
 
