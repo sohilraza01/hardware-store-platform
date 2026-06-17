@@ -32,10 +32,14 @@ export default function RegisterPage() {
     try {
       setIsLoading(true);
       await registerUser({ name: data.name, email: data.email, password: data.password, phone: data.phone });
-      toast.success('Account Created! Welcome! 🎉');
+      toast.success('Account Created! Welcome! 🎉',{
+        position:'top-left'
+      });
       navigate('/');
     } catch (error: any) {
-      toast.error(error.message || 'Registration Failed!');
+      toast.error(error.message || 'Registration Failed!',{
+        position:'top-left'
+      });
     } finally {
       setIsLoading(false);
     }

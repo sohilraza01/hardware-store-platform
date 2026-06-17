@@ -75,9 +75,13 @@ function ProductModal({ product, onClose, onSave }: any) {
       setUploading(true);
       const url = await uploadImage(file);
       setImageUrl(url);
-      toast.success('Image uploaded successfully! ✅');
+      toast.success('Image uploaded successfully! ✅',{
+        position: "top-left",
+      });
     } catch (error: any) {
-      toast.error(error.message || 'Failed to image upload!');
+      toast.error(error.message || 'Failed to image upload!',{
+        position: "top-left",
+      });
     } finally {
       setUploading(false);
     }
@@ -279,46 +283,64 @@ export default function AdminPanel() {
     mutationFn: adminApi.createProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-products'] });
-      toast.success('Product added successfully! ✅');
+      toast.success('Product added successfully! ✅',{
+        position:'top-left'
+      });
       setShowProductModal(false);
     },
-    onError: (err: any) => toast.error(err.message),
+    onError: (err: any) => toast.error(err.message ,{
+        position:'top-left'
+      }),
   });
 
   const updateMutation = useMutation({
     mutationFn: ({ id, data }: any) => adminApi.updateProduct(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-products'] });
-      toast.success('Product updated successfully! ✅');
+      toast.success('Product updated successfully! ✅',{
+        position:'top-left'
+      });
       setShowProductModal(false);
       setEditingProduct(null);
     },
-    onError: (err: any) => toast.error(err.message),
+    onError: (err: any) => toast.error(err.message,{
+        position:'top-left'
+      }),
   });
 
   const deleteMutation = useMutation({
     mutationFn: adminApi.deleteProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-products'] });
-      toast.success('Product deleted successfully!');
+      toast.success('Product deleted successfully!',{
+        position:'top-left'
+      });
     },
-    onError: (err: any) => toast.error(err.message),
+    onError: (err: any) => toast.error(err.message,{
+        position:'top-left'
+      }),
   });
 
   const orderStatusMutation = useMutation({
     mutationFn: ({ id, status }: any) => adminApi.updateOrderStatus(id, status),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-orders'] });
-      toast.success('Order status updated successfully! ✅');
+      toast.success('Order status updated successfully! ✅',{
+        position:'top-left'
+      });
     },
-    onError: (err: any) => toast.error(err.message),
+    onError: (err: any) => toast.error(err.message,{
+        position:'top-left'
+      }),
   });
 
   const deleteUserMutation = useMutation({
     mutationFn: adminApi.deleteUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-users'] });
-      toast.success('User deleted!');
+      toast.success('User deleted!',{
+        position:'top-left'
+      });
     },
   });
 

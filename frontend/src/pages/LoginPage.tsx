@@ -26,10 +26,14 @@ export default function LoginPage() {
     try {
       setIsLoading(true);
       await login(data.email, data.password);
-      toast.success('Login Successfully! 🎉');
+      toast.success('Login Successfully! 🎉',{
+        position:'top-left'
+      });
       navigate('/');
     } catch (error: any) {
-      toast.error(error.message || 'Login Failed');
+      toast.error(error.message || 'Login Failed',{
+        position:'top-left'
+      });
     } finally {
       setIsLoading(false);
     }

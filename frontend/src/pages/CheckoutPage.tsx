@@ -60,9 +60,13 @@ export default function CheckoutPage() {
       setOrderId(order._id);
       setOrderPlaced(true);
       clearCart();
-      toast.success('Order placed! 🎉');
+      toast.success('Order placed! 🎉',{
+        position:'top-left'
+      });
     } catch (error: any) {
-      toast.error(error.message || 'Order not placed!');
+      toast.error(error.message || 'Order not placed!',{
+        position:'top-left'
+      });
     } finally {
       setIsLoading(false);
     }

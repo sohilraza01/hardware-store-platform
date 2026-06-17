@@ -35,7 +35,9 @@ function ProductCard({ product }: { product: any }) {
 
   const handleAddToCart = () => {
     if (!user) {
-      toast.error('You Need to Login First! 🔐');
+      toast.error('You Need to Login First! 🔐',{
+        position:'top-left'
+      });
       navigate('/login');
       return;
     }
