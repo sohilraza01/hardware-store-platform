@@ -45,23 +45,31 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       if (exists) {
         // Pehle se hai toh quantity badhao
         if (exists.quantity >= item.stock) {
-          toast.error('out of Stock!');
+          toast.error('out of Stock!',{
+            position:'top-left'
+          });
           return prev;
         }
-        toast.success('Another one got added to the cart!');
+        toast.success('Another one got added to the cart!',{
+          position:'top-left'
+        });
         return prev.map(i =>
           i._id === item._id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
       // Naya item add karo
-      toast.success(`${item.name} added to cart successfully! 🛒`);
+      toast.success(`${item.name} added to cart successfully! 🛒`,{
+        position:'top-left'
+      });
       return [...prev, { ...item, quantity: 1 }];
     });
   };
 
   const removeFromCart = (id: string) => {
     setCartItems(prev => prev.filter(i => i._id !== id));
-    toast.success('Item remove from cart!');
+    toast.success('Item remove from cart!',{
+      position:'top-left'
+    });
   };
 
   const updateQuantity = (id: string, quantity: number) => {
@@ -70,7 +78,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       prev.map(i => {
         if (i._id === id) {
           if (quantity > i.stock) {
-            toast.error('Out of Stock!');
+            toast.error('Out of Stock!',{
+              position:'top-left'
+            });
             return i;
           }
           return { ...i, quantity };
