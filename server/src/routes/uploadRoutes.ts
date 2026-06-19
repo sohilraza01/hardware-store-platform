@@ -9,7 +9,7 @@ router.post('/', protect, adminOnly, upload.single('image'), (req, res: Response
     return res.status(400).json({ message: 'File not found!' });
   }
 
-  const imageUrl = `${process.env.PORT}/uploads/${req.file.filename}`;
+  const imageUrl = `https://ahmadi-hardwarfe-backend.onrender.com/uploads/${req.file.filename}`;
   res.json({
     message: 'Image Uploaded!',
     imageUrl,
