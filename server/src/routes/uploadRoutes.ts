@@ -6,12 +6,12 @@ const router = express.Router();
 
 router.post('/', protect, adminOnly, upload.single('image'), (req, res: Response) => {
   if (!req.file) {
-    return res.status(400).json({ message: 'Koi file nahi mili!' });
+    return res.status(400).json({ message: 'File not found!' });
   }
 
-  const imageUrl = `/uploads/${req.file.filename}`;
+  const imageUrl = `${process.env.PORT}/uploads/${req.file.filename}`;
   res.json({
-    message: 'Image upload ho gayi!',
+    message: 'Image Uploaded!',
     imageUrl,
   });
 });

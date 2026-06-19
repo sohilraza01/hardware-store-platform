@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
   res.json({ message: '🔧 Hardware Store API is running!' });
 });
 
-// TODO: Yahan routes add honge agle steps mein
+// TODO: All Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
