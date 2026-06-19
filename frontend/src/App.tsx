@@ -55,7 +55,7 @@ function ProtectedRoute({ component: Component }: { component: React.ComponentTy
   return <Component />;
 }
 
-// Auth Route — agar already logged in ho toh login/register pe mat jao
+// Auth Route 
 function AuthRoute({ component: Component }: { component: React.ComponentType }) {
   const { user, isLoading } = useAuth();
   const [, navigate] = useLocation();
@@ -75,7 +75,7 @@ function Router() {
   return (
     <AnimatePresence mode="wait">
       <Switch>
-        {/* Public routes — Layout ke saath */}
+        {/* Public routes — With Layout  */}
         <Route path="/">
           <Layout><ScrollToTop /><Home /></Layout>
         </Route>
@@ -92,7 +92,7 @@ function Router() {
         <Layout><ScrollToTop /><OrdersPage /></Layout>
           </Route>
 
-        {/* Auth routes — Navbar/Footer nahi chahiye */}
+        {/* Auth routes — Navbar/Footer */}
         <Route path="/login">
           <AuthRoute component={LoginPage} />
         </Route>
