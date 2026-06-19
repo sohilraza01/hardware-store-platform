@@ -12,7 +12,7 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
   let token = req.headers.authorization?.split(' ')[1]; // "Bearer TOKEN"
 
   if (!token) {
-    return res.status(401).json({ message: 'Login karo pehle!' });
+    return res.status(401).json({ message: 'Please Login first!' });
   }
 
   try {
@@ -20,7 +20,7 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
     req.user = await User.findById(decoded.id).select('-password');
     next();
   } catch {
-    res.status(401).json({ message: 'Token invalid hai!' });
+    res.status(401).json({ message: 'Invalid Token!' });
   }
 };
 
@@ -29,6 +29,6 @@ export const adminOnly = (req: AuthRequest, res: Response, next: NextFunction) =
   if (req.user?.role === 'admin') {
     next();
   } else {
-    res.status(403).json({ message: 'Admin access chahiye!' });
+    res.status(403).json({ message: ' Need for Admin Access!' });
   }
 };
