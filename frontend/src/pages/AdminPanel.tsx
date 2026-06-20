@@ -105,7 +105,7 @@ function ProductModal({ product, onClose, onSave }: any) {
       >
         <div className="flex items-center justify-between p-6 border-b border-border">
           <h2 className="text-xl font-black uppercase tracking-tight">
-            {product ? 'Product Update Karo' : 'Add a New  Product'}
+            {product ? 'Update Product' : 'Add a New  Product'}
           </h2>
           <button onClick={onClose} className="hover:text-primary transition-colors">
             <X size={20} />

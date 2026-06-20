@@ -82,7 +82,7 @@ export const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-// PUT /api/products/:id — product update karo (admin only)
+// PUT /api/products/:id — update product (admin only)
 export const updateProduct = async (req: Request, res: Response) => {
   try {
     const product = await Product.findByIdAndUpdate(
