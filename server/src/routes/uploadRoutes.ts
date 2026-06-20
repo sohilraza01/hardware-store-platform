@@ -1,15 +1,9 @@
 import express, { Request, Response } from 'express';
-import { v2 as cloudinary } from 'cloudinary';
-import upload from '../config/upload';
+import multer from 'multer';
 import { protect, adminOnly } from '../middleware/authMiddleware';
 
 const router = express.Router();
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.post('/', protect, adminOnly, upload.single('image'), async (req: Request, res: Response) => {
   try {
@@ -17,20 +11,32 @@ router.post('/', protect, adminOnly, upload.single('image'), async (req: Request
       return res.status(400).json({ message: 'Koi file nahi mili!' });
     }
 
-    // Buffer ko base64 mein convert karo
-    const b64 = Buffer.from(req.file.buffer).toString('base64');
-    const dataURI = `data:${req.file.mimetype};base64,${b64}`;
+    // Imgur API se upload karo — bilkul free!
+    const base64Image = req.file.buffer.toString('base64');
 
-    // Directly Cloudinary SDK se upload karo
-    const result = await cloudinary.uploader.upload(dataURI, {
-      folder: 'ahmadi-hardware',
+    const response = await fetch('https://api.imgur.com/3/image', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Client-ID 546c25a59c58ad7',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        image: base64Image,
+        type: 'base64',
+      }),
     });
 
-    console.log('Upload success:', result.secure_url);
+    const data = await response.json() as any;
+
+    if (!data.success) {
+      throw new Error('Image upload fail ho gayi!');
+    }
+
+    console.log('Upload success:', data.data.link);
 
     res.json({
       message: 'Image upload ho gayi!',
-      imageUrl: result.secure_url,
+      imageUrl: data.data.link,
     });
   } catch (error: any) {
     console.error('Upload Error:', error.message);
