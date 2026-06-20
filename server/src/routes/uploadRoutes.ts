@@ -1,20 +1,27 @@
-import express, { Response } from 'express';
+import express, { Response, Request } from 'express';
 import upload from '../config/upload';
 import { protect, adminOnly } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-router.post('/', protect, adminOnly, upload.single('image'), (req, res: Response) => {
-  if (!req.file) {
-    return res.status(400).json({ message: 'File not found' });
-  }
+router.post('/', protect, adminOnly, (req: Request, res: Response) => {
+  upload.single('image')(req, res, (err) => {
+    if (err) {
+      console.error('Upload Error:', err);
+      return res.status(500).json({ message: err.message });
+    }
 
-  // Cloudinary direct URL deta hai
-  const imageUrl = (req.file as any).path;
+    if (!req.file) {
+      return res.status(400).json({ message: 'file not found!' });
+    }
 
-  res.json({
-    message: 'Image Uploaded!',
-    imageUrl,
+    const imageUrl = (req.file as any).path;
+    console.log('Image uploaded:', imageUrl);
+
+    res.json({
+      message: 'Image uploaded!',
+      imageUrl,
+    });
   });
 });
 
