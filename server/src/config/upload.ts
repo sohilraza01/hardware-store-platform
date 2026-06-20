@@ -3,9 +3,9 @@ import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import multer from 'multer';
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME as string,
+  api_key: process.env.CLOUDINARY_API_KEY as string,
+  api_secret: process.env.CLOUDINARY_API_SECRET as string,
 });
 
 const storage = new CloudinaryStorage({
@@ -13,7 +13,6 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'ahmadi-hardware',
     allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
-    transformation: [{ width: 800, height: 600, crop: 'limit' }],
   } as any,
 });
 
