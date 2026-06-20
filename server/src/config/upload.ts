@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary.v2,
   params: {
     folder: 'ahmadi-hardware',
-    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+    
   } as any,
 });
 
