@@ -1,6 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-
-console.log('API URL:', API_URL); // ← ye add karo
+const API_URL = 'https://ahmadi-hardwarfe-backend.onrender.com/api';
 
 // Token localStorage se lao
 const getToken = () => localStorage.getItem('token');
