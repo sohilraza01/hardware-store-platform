@@ -60,17 +60,21 @@ function ProductCard({ product }: { product: any }) {
       {/* Image */}
       <div className="aspect-[4/3] bg-muted overflow-hidden relative">
         {product.images?.[0] ? (
-          <img
-            src={product.images[0]}
-            alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
-            <Icon size={40} className="opacity-20" />
-            <span className="text-xs opacity-40">No Image</span>
-          </div>
-        )}
+  <img
+    src={product.images[0]}
+    alt={product.name}
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    onError={(e) => {
+      // Image load na ho toh icon dikhao
+      (e.target as HTMLImageElement).style.display = 'none';
+    }}
+  />
+) : (
+  <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
+    <Icon size={40} className="opacity-20" />
+    <span className="text-xs opacity-40">No Image</span>
+  </div>
+)}
         {/* Category Badge */}
         <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 uppercase tracking-wider">
           {product.category}
