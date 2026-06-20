@@ -133,5 +133,5 @@ export const uploadImage = async (file: File): Promise<string> => {
   if (!res.ok) throw new Error(data.message || 'Upload Failed!');
 
   // Full URL return karo
-  return `https://ahmadi-hardwarfe-backend.onrender.com${data.imageUrl}`;
+  return `${data.imageUrl}`;
 };
