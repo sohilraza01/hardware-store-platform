@@ -103,7 +103,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="mt-6 text-xl md:text-2xl text-zinc-300 max-w-2xl leading-relaxed"
             >
-              The trusted supply partner for professional contractors and dedicated builders since 1999.
+              The trusted supply partner for professional contractors and dedicated builders since 2024.
             </motion.p>
             
             <motion.div 
